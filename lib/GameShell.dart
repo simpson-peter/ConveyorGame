@@ -13,7 +13,7 @@ class GameShell extends StatefulWidget {
 class _GameShellState extends State<GameShell> {
   @override
   Widget build(BuildContext context) {
-    ConveyorGame fallingGame = ConveyorGame();
+    ConveyorGame fallingGame = ConveyorGame(context);
     return fallingGame.widget;
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
-
+import 'package:fallingthings/data_models/game_data.dart';
+import 'package:provider/provider.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +34,11 @@ class ConveyorGame extends Game with TapDetector {
 
   ShoppingList _shoppingList;
 
+  BuildContext context;
+
   //Constructor
-  ConveyorGame() {
+  ConveyorGame(BuildContext context) {
+    this.context = context;
     _items.add(
       Item(
         height: 50,
@@ -119,6 +123,7 @@ class ConveyorGame extends Game with TapDetector {
 
   void resize(Size size) {
     screenSize = size;
+    Provider.of<GameData>(context).setScreenSize(size);
     super.resize(size);
   }
 }
