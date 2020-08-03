@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fallingthings/ItemGenerator.dart';
 import 'package:flame/game/game.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
@@ -13,6 +14,8 @@ class ConveyorGame extends Game {
   double _timeSinceStep = 0;
 
   List<Item> _items = List<Item>();
+
+  ItemGenerator itemGenerator;
 
   //Constructor
   ConveyorGame() {
@@ -41,11 +44,16 @@ class ConveyorGame extends Game {
 
   @override
   void update(double t) {
+    //Create an item generator if it does not yet exist.
+    if (itemGenerator == null) {
+      itemGenerator = ItemGenerator(yPos: screenSize.height / 2);
+    }
+
     //Update time counter
     _timeSinceStep += t;
 
     //Add any new items if necessary
-    getNewItem();
+    itemGenerator.getNewItem(_items);
 
     //If it's time to update the screen, do so.
     if (_timeSinceStep >= _stepTime) {

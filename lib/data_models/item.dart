@@ -13,10 +13,10 @@ class Item {
 
   //Item Constructor, all fields are mandatory.
   Item(
-      {@required this.width,
-      @required this.height,
+      {this.width = 50,
+      this.height = 50,
       @required this.itemColor,
-      @required this.xPos,
+      this.xPos = 0,
       @required this.yPos});
 
   //Draws the object on the canvas
