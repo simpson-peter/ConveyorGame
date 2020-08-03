@@ -2,9 +2,11 @@
 * Represent the position, status, and visual representation of a conveyor item
 */
 import 'dart:ui';
+import 'package:flame/components/component.dart';
+import 'package:flame/components/mixins/tapable.dart';
 import 'package:flutter/material.dart';
 
-class Item {
+class Item extends PositionComponent with Tapable {
   double xPos;
   double yPos;
   double height;
@@ -17,7 +19,12 @@ class Item {
       this.height = 50,
       @required this.itemColor,
       this.xPos = 0,
-      @required this.yPos});
+      this.yPos});
+
+  void onTapDown(TapDownDetails details) {
+    itemColor = Colors.white;
+    debugPrint("Square Tapped");
+  }
 
   //Draws the object on the canvas
   void render(Canvas canvas) {
@@ -25,5 +32,23 @@ class Item {
     Paint itemPaint = Paint();
     itemPaint.color = itemColor;
     canvas.drawRect(itemRect, itemPaint);
+  }
+
+  void onTapUp(TapUpDetails details) {
+    debugPrint("Square Tapped");
+  }
+
+  void update(double dt) {}
+
+  //Returns whether the tap represented by td hit this square
+  bool isTapped(TapDownDetails td) {
+    //Check for x coordinate matching
+    if (td.globalPosition.dx >= xPos &&
+        td.globalPosition.dx <= (xPos + width)) {
+      return (td.globalPosition.dy >= yPos &&
+          td.globalPosition.dy <= (yPos + height));
+    }
+
+    return false;
   }
 }

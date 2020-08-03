@@ -40,16 +40,12 @@ class ItemGenerator {
   // Assumes that items is non-null and non-empty.
   void getNewItem(List<Item> toAddTo) {
     //If the elapsed time is over the threshold, we should produce an item
-    if (DateTime.now().millisecondsSinceEpoch >=
-        (_timeAtLast + _productionInterval)) {
-      _timeAtLast = DateTime.now().millisecondsSinceEpoch;
-      toAddTo.add(
-        Item(
-          xPos: 0,
-          yPos: this.yPos,
-          itemColor: testItemColors[_rand.nextInt(testItemColors.length)],
-        ),
-      );
-    }
+    toAddTo.add(
+      Item(
+        xPos: 0,
+        yPos: this.yPos,
+        itemColor: testItemColors[_rand.nextInt(testItemColors.length)],
+      ),
+    );
   }
 }

@@ -1,5 +1,7 @@
+import 'package:fallingthings/data_models/game_data.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'conveyor_game.dart';
 
@@ -12,9 +14,6 @@ class _GameShellState extends State<GameShell> {
   @override
   Widget build(BuildContext context) {
     ConveyorGame fallingGame = ConveyorGame();
-    TapGestureRecognizer tapper = TapGestureRecognizer();
-    tapper.onTapDown = fallingGame.onTapDown;
-    fl
     return fallingGame.widget;
   }
 }

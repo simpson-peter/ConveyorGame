@@ -23,9 +23,7 @@ class MyApp extends StatelessWidget {
     flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
 
     return ChangeNotifierProvider(
-      create: (context) {
-        GameData(flameUtil: flameUtil);
-      },
+      create: (context) => GameData(flameUtil: flameUtil),
       child: MaterialApp(
         home: GameShell(),
       ),
