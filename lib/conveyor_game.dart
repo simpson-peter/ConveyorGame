@@ -46,7 +46,7 @@ class ConveyorGame extends Game {
   void update(double t) {
     //Create an item generator if it does not yet exist.
     if (itemGenerator == null) {
-      itemGenerator = ItemGenerator(yPos: screenSize.height / 2);
+      itemGenerator = ItemGenerator(yPos: 50);
     }
 
     //Update time counter
