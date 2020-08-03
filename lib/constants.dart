@@ -1,1 +1,1 @@
-const double kStepTime = 0.05;
+const double kStepTime = 0.02;

@@ -10,21 +10,21 @@ import 'data_models/game_data.dart';
 void main() {
   //Run the game widget
   runApp(MyApp());
-
-  //initialize flame Util object
-  Util flameUtil = Util();
-  //make app full screen, lock vertical orientation
-  flameUtil.fullScreen();
-  //TODO Allow landscape switching?
-  flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //initialize flame Util object
+    Util flameUtil = Util();
+    //make app full screen, lock vertical orientation
+    flameUtil.fullScreen();
+    //TODO Allow landscape switching?
+    flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
+
     return ChangeNotifierProvider(
       create: (context) {
-        GameData();
+        GameData(flameUtil: flameUtil);
       },
       child: MaterialApp(
         home: GameShell(),

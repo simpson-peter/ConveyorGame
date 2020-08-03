@@ -12,7 +12,7 @@ class ItemGenerator {
   //Tracks the time at the last item generation
   int _timeAtLast;
   //length of time between item generation (secs)
-  double _productionInterval = 1000;
+  double _productionInterval = 3000;
   //List of Items from which to generate
   List<Item> items;
 
@@ -27,7 +27,7 @@ class ItemGenerator {
   double yPos;
 
   ItemGenerator({this.items, @required this.yPos}) {
-    _startTime = DateTime.now().millisecond;
+    _startTime = DateTime.now().millisecondsSinceEpoch;
     _rand = Random(_startTime);
     _timeAtLast = _startTime;
   }
@@ -40,9 +40,9 @@ class ItemGenerator {
   // Assumes that items is non-null and non-empty.
   void getNewItem(List<Item> toAddTo) {
     //If the elapsed time is over the threshold, we should produce an item
-    if (DateTime.now().millisecond >= (_timeAtLast + _productionInterval)) {
-      debugPrint(DateTime.now().millisecond.toString());
-      _timeAtLast = DateTime.now().millisecond;
+    if (DateTime.now().millisecondsSinceEpoch >=
+        (_timeAtLast + _productionInterval)) {
+      _timeAtLast = DateTime.now().millisecondsSinceEpoch;
       toAddTo.add(
         Item(
           xPos: 0,
