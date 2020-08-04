@@ -29,4 +29,4 @@ const TextStyle kLargeTextStyle = TextStyle(
   fontSize: 20,
 );
 
-const String kConveryAssetPath = 'con'
+const String kConveyorAssetPath = 'conveyor_tile.png';

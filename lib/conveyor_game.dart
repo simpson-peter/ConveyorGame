@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
 import 'package:fallingthings/shopping_list.dart';
+import 'conveyor.dart';
 import 'data_models/game_data.dart';
 import 'data_models/item_prototype.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,9 @@ class ConveyorGame extends Game with TapDetector {
   double _timeSinceStep = 0;
   //Keeps track of the time since the last item was generated
   double _timeSinceItemGen = 0;
+
+  //Handles rendering the animated conveyor in the game background
+  Conveyor conveyorSprite;
 
   List<ItemPrototype> _itemsToGet = [
     ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
@@ -45,6 +49,9 @@ class ConveyorGame extends Game with TapDetector {
   ConveyorGame(BuildContext context) {
     this.context = context;
     _shoppingList = new ShoppingList(itemList: _itemsToGet, context: context);
+    conveyorSprite = Conveyor(
+        screenWidth:
+            Provider.of<GameData>(context, listen: false).screenSize.width);
   }
 
   @override
@@ -54,6 +61,9 @@ class ConveyorGame extends Game with TapDetector {
     Paint bgPaint = Paint();
     bgPaint.color = Color(0xFF1c313a);
     canvas.drawRect(bgRect, bgPaint);
+
+    //Render conveyor belt
+    conveyorSprite.render(canvas);
 
     //Render items-to-make
     _shoppingList.render(canvas);
@@ -79,6 +89,8 @@ class ConveyorGame extends Game with TapDetector {
       if (itemGenerator == null) {
         itemGenerator = ItemGenerator(yPos: 50);
       }
+
+      conveyorSprite.update(t);
 
       //Update time counter
       _timeSinceStep += t;
@@ -152,7 +164,7 @@ class ConveyorGame extends Game with TapDetector {
 
   void resize(Size size) {
     screenSize = size;
-    //Provider.of<GameData>(context).setScreenSize(size);
+    conveyorSprite.updateScreenWidth(size.width);
     super.resize(size);
   }
 }
