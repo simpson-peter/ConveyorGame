@@ -1,4 +1,5 @@
 import 'package:fallingthings/constants.dart';
+import 'package:fallingthings/data_models/game_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,14 +20,14 @@ class _GameBarState extends State<GameBar> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Score ' + 0.toString(),
+            'Score ' + Provider.of<GameData>(context).score.toString(),
             style: kLargeTextStyle,
           ),
           SizedBox(
             width: 30,
           ),
           Text(
-            'Streak: ' + 0.toString(),
+            'Streak: ' + Provider.of<GameData>(context).streak.toString(),
             style: kLargeTextStyle,
           ),
         ],
