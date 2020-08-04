@@ -20,9 +20,6 @@ class ShoppingList extends PositionComponent {
   //Tracks which Items this shopping list has already matched for
   //itemIDs from Items passed into verifyMembership()
   Map<String, ItemPrototype> _alreadyMatched = Map<String, ItemPrototype>();
-  //Tracks which items that have failed to match from those passed into verifyColorMembership()
-  //Note this includes colors present in _itemList which are also present in _alreadyMatched()
-  int _failedToMatch = 0;
 
   ShoppingList(
       {@required List<ItemPrototype> itemList,
@@ -55,7 +52,6 @@ class ShoppingList extends PositionComponent {
       if (toVerify.prototype.itemID == prototype.itemID) {
         //If we've seen it before (set membership), it's counted as a wrong guess
         if (_alreadyMatched.containsKey(prototype.itemID)) {
-          _failedToMatch++;
           return false;
           //If we haven't seen it, it's a correct guess. Add to previous matches set.
         } else {
@@ -71,5 +67,10 @@ class ShoppingList extends PositionComponent {
   //Returns true if all _itemList members have been verified by verify
   bool listCompleted() {
     return _itemList.length <= _alreadyMatched.length;
+  }
+
+  //Resets gameplay, makes it so the player has collected zero of the matching items
+  void resetAlreadyMatched() {
+    _alreadyMatched = Map<String, ItemPrototype>();
   }
 }

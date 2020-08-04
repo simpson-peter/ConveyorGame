@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'data_models/item_prototype.dart';
 
 //Effective logical framerate.
-const double kStepTime = 0.02;
+const double kStepTime = 0.015;
 //Rate (item/sec) of item generation
 const double kItemGenertatorTime = 2.5;
 

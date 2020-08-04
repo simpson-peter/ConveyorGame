@@ -120,6 +120,7 @@ class ConveyorGame extends Game with TapDetector {
   //Handles tap events. Checks each square to see if it was taps, and removes it if so.
   void onTapDown(TapDownDetails tapDownDetails) {
     if (_isDone) {
+      _resetGame();
       return;
     }
     for (int i = 0; i < _items.length; i++) {
@@ -137,6 +138,16 @@ class ConveyorGame extends Game with TapDetector {
         return;
       }
     }
+  }
+
+  //Method to re-start the game once it's done. Resets all data except state
+  void _resetGame() {
+    Provider.of<GameData>(context, listen: false).resetScore();
+    _items = List<Item>();
+    _shoppingList.resetAlreadyMatched();
+    _timeSinceItemGen = 0;
+    _timeSinceStep = 0;
+    _isDone = false;
   }
 
   void resize(Size size) {

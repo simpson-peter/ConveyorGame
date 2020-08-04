@@ -49,4 +49,10 @@ class GameData extends ChangeNotifier {
       return correctTaps / (correctTaps + incorrectTaps);
     }
   }
+
+  void resetScore() {
+    this.correctTaps = 0;
+    this.incorrectTaps = 0;
+    notifyListeners();
+  }
 }
