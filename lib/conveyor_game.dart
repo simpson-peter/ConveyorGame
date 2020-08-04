@@ -52,7 +52,7 @@ class ConveyorGame extends Game with TapDetector {
     //Render background
     Rect bgRect = Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
     Paint bgPaint = Paint();
-    bgPaint.color = Color(0xff000000);
+    bgPaint.color = Colors.blueGrey;
     canvas.drawRect(bgRect, bgPaint);
 
     //Render items-to-make
