@@ -10,6 +10,7 @@ import 'constants.dart';
 import 'data_models/item.dart';
 
 //TODO Implement timer
+//TODO Implement Streak Tracker
 
 class ConveyorGame extends Game with TapDetector {
   Size screenSize;
@@ -27,7 +28,7 @@ class ConveyorGame extends Game with TapDetector {
   int _correctTaps = 0;
   int _incorrectTaps = 0;
 
-  List<Item> _itemsToGet = [
+  List<> _itemsToGet = [
     Item(itemColor: Colors.pink),
     Item(itemColor: Colors.orangeAccent),
     Item(itemColor: Colors.purpleAccent)

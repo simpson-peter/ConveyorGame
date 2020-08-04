@@ -4,6 +4,8 @@
 import 'dart:ui';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/tapable.dart';
+import 'package:flame/position.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
 class Item extends PositionComponent with Tapable {
@@ -12,14 +14,19 @@ class Item extends PositionComponent with Tapable {
   double height;
   double width;
   Color itemColor;
+  String imgFilepath;
+  Sprite image;
 
   //Item Constructor, all fields are mandatory.
   Item(
       {this.width = 50,
       this.height = 50,
       @required this.itemColor,
+      @required this.imgFilepath,
       this.xPos = 0,
-      this.yPos});
+      this.yPos}) {
+    image = new Sprite(imgFilepath);
+  }
 
   void onTapDown(TapDownDetails details) {
     itemColor = Colors.white;
@@ -28,10 +35,12 @@ class Item extends PositionComponent with Tapable {
 
   //Draws the object on the canvas
   void render(Canvas canvas) {
-    Rect itemRect = Rect.fromLTWH(xPos, yPos, width, height);
-    Paint itemPaint = Paint();
-    itemPaint.color = itemColor;
-    canvas.drawRect(itemRect, itemPaint);
+//    Rect itemRect = Rect.fromLTWH(xPos, yPos, width, height);
+//    Paint itemPaint = Paint();
+//    itemPaint.color = itemColor;
+//    canvas.drawRect(itemRect, itemPaint);
+
+    image.renderScaled(canvas, Position(xPos, yPos), scale: 2.0);
   }
 
   void onTapUp(TapUpDetails details) {
