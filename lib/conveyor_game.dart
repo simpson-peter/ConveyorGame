@@ -23,21 +23,17 @@ class ConveyorGame extends Game with TapDetector {
   //Keeps track of the time since the last item was generated
   double _timeSinceItemGen = 0;
 
-  //Tracks whether the round is over
-  bool _isDone = false;
-
   List<ItemPrototype> _itemsToGet = [
     ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
     ItemPrototype(itemID: 'A2', imgFilepath: 'apple_red.png'),
-    ItemPrototype(itemID: 'A3', imgFilepath: 'berry_red.png'),
     ItemPrototype(itemID: 'A4', imgFilepath: 'cake_normal.png'),
   ];
 
+  //Tracks whether the round is over
+  bool _isDone = false;
+
   //Holds all items on-screen
   List<Item> _items = List<Item>();
-
-  //Represents
-  List<Item> _clickedItems = List<Item>();
 
   ItemGenerator itemGenerator;
 
@@ -75,7 +71,8 @@ class ConveyorGame extends Game with TapDetector {
     }
     if (_shoppingList.listCompleted()) {
       print('Game over');
-      print('Score: ' + Provider.of<GameData>(context).getScore().toString());
+      print('Score: ' +
+          Provider.of<GameData>(context, listen: false).getScore().toString());
       _isDone = true;
     } else {
       //Create an item generator if it does not yet exist.
@@ -129,11 +126,12 @@ class ConveyorGame extends Game with TapDetector {
       Item item = _items[i];
       if (item.isTapped(tapDownDetails)) {
         if (_shoppingList.verifyMembership(toVerify: item)) {
-          Provider.of<GameData>(context).incrementCorrectTaps();
-          Provider.of<GameData>(context).incrementStreak();
+          Provider.of<GameData>(context, listen: false).incrementCorrectTaps();
+          Provider.of<GameData>(context, listen: false).incrementStreak();
         } else {
-          Provider.of<GameData>(context).incrementIncorrectTaps();
-          Provider.of<GameData>(context).setStreak(0);
+          Provider.of<GameData>(context, listen: false)
+              .incrementIncorrectTaps();
+          Provider.of<GameData>(context, listen: false).setStreak(0);
         }
         _items.removeAt(i);
         return;
