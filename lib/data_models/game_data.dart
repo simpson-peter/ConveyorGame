@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class GameData extends ChangeNotifier {
   int score = 0;
   Util flameUtil;
-  Size screenSize;
+  Size screenSize = Size(0, 0);
 
   GameData({Util flameUtil}) {
     this.flameUtil = flameUtil;

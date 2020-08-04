@@ -21,9 +21,12 @@ class ItemGenerator {
     Colors.red,
     Colors.blue,
     Colors.greenAccent,
+    Colors.pink,
+    Colors.orangeAccent,
+    Colors.purpleAccent,
   ];
 
-  //Position to initialize xpositions
+  //Position to initialize y positions
   double yPos;
 
   ItemGenerator({this.items, @required this.yPos}) {
@@ -43,7 +46,7 @@ class ItemGenerator {
     toAddTo.add(
       Item(
         xPos: 0,
-        yPos: this.yPos,
+        yPos: 200,
         itemColor: testItemColors[_rand.nextInt(testItemColors.length)],
       ),
     );

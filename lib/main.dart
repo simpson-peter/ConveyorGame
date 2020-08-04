@@ -1,3 +1,4 @@
+import 'package:flame/flame.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,10 +14,17 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  Size size;
+  //Ensures that screen dimensions are loaded before proceeding to render the game.
+  void loadDimensions() async {
+    size = await Flame.util.initialDimensions();
+  }
+
   @override
   Widget build(BuildContext context) {
     //initialize flame Util object
     Util flameUtil = Util();
+    loadDimensions();
     //make app full screen, lock vertical orientation
     flameUtil.fullScreen();
     //TODO Allow landscape switching?
