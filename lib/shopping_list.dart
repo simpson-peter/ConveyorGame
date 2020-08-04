@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fallingthings/data_models/item_prototype.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flame/components/component.dart';
@@ -8,48 +9,57 @@ import 'data_models/game_data.dart';
 import 'data_models/item.dart';
 
 class ShoppingList extends PositionComponent {
-  //Stores the
-  List<Item> _itemList;
+  //Stores the prototypes which the player is trying to match
+  List<ItemPrototype> _itemList;
+  //Stores the list of concrete Items() that mirror the _itemLists' prototypes.
+  List<Item> _graphicItemList = List<Item>();
+
+  //Used to graphically represent this shopping list.
   BuildContext context;
 
   //Tracks which Items this shopping list has already matched for
-  //color from Items passed into verifyColorMembership()
-  Map<Color, Item> _alreadyMatched = Map<Color, Item>();
+  //itemIDs from Items passed into verifyMembership()
+  Map<String, ItemPrototype> _alreadyMatched = Map<String, ItemPrototype>();
   //Tracks which items that have failed to match from those passed into verifyColorMembership()
   //Note this includes colors present in _itemList which are also present in _alreadyMatched()
   int _failedToMatch = 0;
 
   ShoppingList(
-      {@required List<Item> itemList, @required BuildContext context}) {
+      {@required List<ItemPrototype> itemList,
+      @required BuildContext context}) {
     _itemList = itemList;
+
     //TODO Find an actual position for this
     double startPos = 375;
-    for (Item item in _itemList) {
-      item.xPos = startPos;
-      startPos += item.width;
-      item.yPos = 0;
+    for (ItemPrototype prototype in _itemList) {
+      _graphicItemList.add(Item(
+        prototype: prototype,
+        xPos: startPos,
+        yPos: 0,
+      ));
+      startPos += 50;
     }
   }
 
   @override
   void render(Canvas c) {
-    for (Item item in _itemList) {
+    for (Item item in _graphicItemList) {
       item.render(c);
     }
   }
 
   //Compares toVerify to potentially all items of _itemList, returns true if the two are the same color, false otherwise
-  bool verifyColorMembership({Item toVerify}) {
-    for (Item item in _itemList) {
+  bool verifyMembership({Item toVerify}) {
+    for (ItemPrototype prototype in _itemList) {
       //If the color is found in the _itemList, that means it's a wanted color
-      if (toVerify.itemColor == item.itemColor) {
+      if (toVerify.prototype.itemID == prototype.itemID) {
         //If we've seen it before (set membership), it's counted as a wrong guess
-        if (_alreadyMatched.containsKey(item.itemColor)) {
+        if (_alreadyMatched.containsKey(prototype.itemID)) {
           _failedToMatch++;
           return false;
           //If we haven't seen it, it's a correct guess. Add to previous matches set.
         } else {
-          _alreadyMatched[toVerify.itemColor] = toVerify;
+          _alreadyMatched[toVerify.prototype.itemID] = toVerify.prototype;
           return true;
         }
       }

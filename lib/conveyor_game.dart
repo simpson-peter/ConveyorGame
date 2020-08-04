@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
-import 'package:fallingthings/data_models/game_data.dart';
 import 'package:fallingthings/shopping_list.dart';
+import 'data_models/item_prototype.dart';
 import 'package:provider/provider.dart';
 import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
@@ -28,10 +28,11 @@ class ConveyorGame extends Game with TapDetector {
   int _correctTaps = 0;
   int _incorrectTaps = 0;
 
-  List<> _itemsToGet = [
-    Item(itemColor: Colors.pink),
-    Item(itemColor: Colors.orangeAccent),
-    Item(itemColor: Colors.purpleAccent)
+  List<ItemPrototype> _itemsToGet = [
+    ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
+    ItemPrototype(itemID: 'A2', imgFilepath: 'apple_red.png'),
+    ItemPrototype(itemID: 'A3', imgFilepath: 'berry_red.png'),
+    ItemPrototype(itemID: 'A4', imgFilepath: 'cake_normal.png'),
   ];
 
   //Holds all items on-screen
@@ -131,7 +132,7 @@ class ConveyorGame extends Game with TapDetector {
     for (int i = 0; i < _items.length; i++) {
       Item item = _items[i];
       if (item.isTapped(tapDownDetails)) {
-        if (_shoppingList.verifyColorMembership(toVerify: item)) {
+        if (_shoppingList.verifyMembership(toVerify: item)) {
           _correctTaps++;
         } else {
           _incorrectTaps++;

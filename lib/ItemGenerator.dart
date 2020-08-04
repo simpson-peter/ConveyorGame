@@ -1,3 +1,5 @@
+import 'package:fallingthings/data_models/item_prototype.dart';
+
 import 'data_models/item.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -14,16 +16,13 @@ class ItemGenerator {
   //length of time between item generation (secs)
   double _productionInterval = 3000;
   //List of Items from which to generate
-  List<Item> items;
+  List<ItemPrototype> items;
 
-  static List<Color> testItemColors = [
-    Colors.yellow,
-    Colors.red,
-    Colors.blue,
-    Colors.greenAccent,
-    Colors.pink,
-    Colors.orangeAccent,
-    Colors.purpleAccent,
+  List<ItemPrototype> _allItemPrototypes = [
+    ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
+    ItemPrototype(itemID: 'A2', imgFilepath: 'apple_red.png'),
+    ItemPrototype(itemID: 'A3', imgFilepath: 'berry_red.png'),
+    ItemPrototype(itemID: 'A4', imgFilepath: 'cake_normal.png'),
   ];
 
   //Position to initialize y positions
@@ -35,7 +34,7 @@ class ItemGenerator {
     _timeAtLast = _startTime;
   }
 
-  void setItems(List<Item> items) {
+  void setItems(List<ItemPrototype> items) {
     this.items = items;
   }
 
@@ -47,7 +46,7 @@ class ItemGenerator {
       Item(
         xPos: 0,
         yPos: 200,
-        itemColor: testItemColors[_rand.nextInt(testItemColors.length)],
+        prototype: _allItemPrototypes[_rand.nextInt(_allItemPrototypes.length)],
       ),
     );
   }

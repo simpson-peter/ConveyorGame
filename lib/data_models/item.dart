@@ -2,6 +2,8 @@
 * Represent the position, status, and visual representation of a conveyor item
 */
 import 'dart:ui';
+import 'package:fallingthings/ItemGenerator.dart';
+import 'package:fallingthings/data_models/item_prototype.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/tapable.dart';
 import 'package:flame/position.dart';
@@ -12,34 +14,20 @@ class Item extends PositionComponent with Tapable {
   double xPos;
   double yPos;
   double height;
-  double width;
-  Color itemColor;
+  static double iconWidth = 50;
   String imgFilepath;
   Sprite image;
 
-  //Item Constructor, all fields are mandatory.
-  Item(
-      {this.width = 50,
-      this.height = 50,
-      @required this.itemColor,
-      @required this.imgFilepath,
-      this.xPos = 0,
-      this.yPos}) {
-    image = new Sprite(imgFilepath);
-  }
+  //Tracks the sprite prototype from which this one is drawn.
+  ItemPrototype prototype;
 
-  void onTapDown(TapDownDetails details) {
-    itemColor = Colors.white;
-    debugPrint("Square Tapped");
+  //Item Constructor, all fields are mandatory.
+  Item({this.height = 50, @required this.prototype, this.xPos = 0, this.yPos}) {
+    image = new Sprite(prototype.imgFilepath);
   }
 
   //Draws the object on the canvas
   void render(Canvas canvas) {
-//    Rect itemRect = Rect.fromLTWH(xPos, yPos, width, height);
-//    Paint itemPaint = Paint();
-//    itemPaint.color = itemColor;
-//    canvas.drawRect(itemRect, itemPaint);
-
     image.renderScaled(canvas, Position(xPos, yPos), scale: 2.0);
   }
 
