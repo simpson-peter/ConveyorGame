@@ -26,16 +26,19 @@ class Item extends PositionComponent with Tapable {
   Item(
       {this.height = 50,
       @required this.prototype,
-      this.xPos = 100,
+      this.width = 50,
+      this.xPos = 0,
       this.yPos = 100,
       this.imgFilepath}) {
     this.image = new Sprite(prototype.imgFilepath);
-    this.width = iconWidth;
+    this.width = 50;
+    this.height = 50;
   }
 
   //Draws the object on the canvas
   void render(Canvas canvas) {
-    image.renderScaled(canvas, Position(xPos, yPos), scale: 2.0);
+    image.renderScaled(canvas, Position(xPos, yPos),
+        scale: prototype.scaleFactor);
   }
 
   void onTapUp(TapUpDetails details) {

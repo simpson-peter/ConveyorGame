@@ -28,6 +28,9 @@ class ConveyorGame extends Game with TapDetector {
   int _correctTaps = 0;
   int _incorrectTaps = 0;
 
+  //Tracks how long the user has selected correct items without a mistake
+  int _streak = 0;
+
   List<ItemPrototype> _itemsToGet = [
     ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
     ItemPrototype(itemID: 'A2', imgFilepath: 'apple_red.png'),
@@ -101,12 +104,6 @@ class ConveyorGame extends Game with TapDetector {
         _timeSinceStep = 0;
         //Iterate over all currently visible items
         for (int i = 0; i < _items.length; i++) {
-          //TODO Delete Below
-          debugPrint("Display items length: " +
-              _items.length.toString() +
-              " " +
-              _items[i].imgFilepath);
-
           Item currItem = _items[i];
 
           //Make sure y position is properly adjusted
@@ -114,8 +111,6 @@ class ConveyorGame extends Game with TapDetector {
 
           //If the item has gone off the screen, remove it.
           if (currItem.width <= 0) {
-            //TODO Delete below
-            debugPrint('Item being removed');
             _items.removeAt(i);
           }
           //If the item has reached the end of the screen, shorten it.
@@ -141,8 +136,10 @@ class ConveyorGame extends Game with TapDetector {
       if (item.isTapped(tapDownDetails)) {
         if (_shoppingList.verifyMembership(toVerify: item)) {
           _correctTaps++;
+          _streak++;
         } else {
           _incorrectTaps++;
+          _streak = 0;
         }
         _items.removeAt(i);
         return;

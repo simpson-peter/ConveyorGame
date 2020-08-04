@@ -5,9 +5,15 @@ class GameData extends ChangeNotifier {
   int score = 0;
   Util flameUtil;
   Size screenSize = Size(0, 0);
+  int streak = 0;
 
   GameData({Util flameUtil}) {
     this.flameUtil = flameUtil;
+  }
+
+  void setStreak(int newStreak) {
+    this.streak = newStreak;
+    notifyListeners();
   }
 
   void setScreenSize(Size screenSize) {

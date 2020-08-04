@@ -1,5 +1,6 @@
 import 'package:fallingthings/data_models/item_prototype.dart';
 
+import 'constants.dart';
 import 'data_models/item.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -17,13 +18,6 @@ class ItemGenerator {
   double _productionInterval = 3000;
   //List of Items from which to generate
   List<ItemPrototype> items;
-
-  List<ItemPrototype> _allItemPrototypes = [
-    ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
-    ItemPrototype(itemID: 'A2', imgFilepath: 'apple_red.png'),
-    ItemPrototype(itemID: 'A3', imgFilepath: 'berry_red.png'),
-    ItemPrototype(itemID: 'A4', imgFilepath: 'cake_normal.png'),
-  ];
 
   //Position to initialize y positions
   double yPos;
@@ -44,10 +38,7 @@ class ItemGenerator {
     //If the elapsed time is over the threshold, we should produce an item
 
     ItemPrototype prototype =
-        _allItemPrototypes[_rand.nextInt(_allItemPrototypes.length)];
-    //TODO Delete Below
-    debugPrint(
-        'Generator creating a new item w path: ' + prototype.imgFilepath);
+        kAllItemPrototypes[_rand.nextInt(kAllItemPrototypes.length)];
     toAddTo.add(
       Item(
         xPos: 0,
