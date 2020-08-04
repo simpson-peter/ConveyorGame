@@ -9,7 +9,7 @@ class ItemGenerator {
   int _startTime;
 
   //Random number generator to generate apple positions, seed with the time
-  Random _rand;
+  Random _rand = Random(DateTime.now().millisecondsSinceEpoch);
 
   //Tracks the time at the last item generation
   int _timeAtLast;
@@ -42,11 +42,18 @@ class ItemGenerator {
   // Assumes that items is non-null and non-empty.
   void getNewItem(List<Item> toAddTo) {
     //If the elapsed time is over the threshold, we should produce an item
+
+    ItemPrototype prototype =
+        _allItemPrototypes[_rand.nextInt(_allItemPrototypes.length)];
+    //TODO Delete Below
+    debugPrint(
+        'Generator creating a new item w path: ' + prototype.imgFilepath);
     toAddTo.add(
       Item(
         xPos: 0,
         yPos: 200,
-        prototype: _allItemPrototypes[_rand.nextInt(_allItemPrototypes.length)],
+        prototype: prototype,
+        imgFilepath: prototype.imgFilepath,
       ),
     );
   }

@@ -14,6 +14,7 @@ class Item extends PositionComponent with Tapable {
   double xPos;
   double yPos;
   double height;
+  double width;
   static double iconWidth = 50;
   String imgFilepath;
   Sprite image;
@@ -22,8 +23,14 @@ class Item extends PositionComponent with Tapable {
   ItemPrototype prototype;
 
   //Item Constructor, all fields are mandatory.
-  Item({this.height = 50, @required this.prototype, this.xPos = 0, this.yPos}) {
-    image = new Sprite(prototype.imgFilepath);
+  Item(
+      {this.height = 50,
+      @required this.prototype,
+      this.xPos = 100,
+      this.yPos = 100,
+      this.imgFilepath}) {
+    this.image = new Sprite(prototype.imgFilepath);
+    this.width = iconWidth;
   }
 
   //Draws the object on the canvas

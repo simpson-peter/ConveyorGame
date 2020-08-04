@@ -90,7 +90,6 @@ class ConveyorGame extends Game with TapDetector {
       _timeSinceStep += t;
       _timeSinceItemGen += t;
 
-      //TODO Probably convert gNI() to always add an item, and then call this on a step time.
       //Add any new items if necessary
       if (_timeSinceItemGen > kItemGenertatorTime) {
         itemGenerator.getNewItem(_items);
@@ -102,6 +101,12 @@ class ConveyorGame extends Game with TapDetector {
         _timeSinceStep = 0;
         //Iterate over all currently visible items
         for (int i = 0; i < _items.length; i++) {
+          //TODO Delete Below
+          debugPrint("Display items length: " +
+              _items.length.toString() +
+              " " +
+              _items[i].imgFilepath);
+
           Item currItem = _items[i];
 
           //Make sure y position is properly adjusted
@@ -109,6 +114,8 @@ class ConveyorGame extends Game with TapDetector {
 
           //If the item has gone off the screen, remove it.
           if (currItem.width <= 0) {
+            //TODO Delete below
+            debugPrint('Item being removed');
             _items.removeAt(i);
           }
           //If the item has reached the end of the screen, shorten it.
