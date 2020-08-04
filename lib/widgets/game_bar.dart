@@ -20,7 +20,7 @@ class _GameBarState extends State<GameBar> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(
-            'Score ' + Provider.of<GameData>(context).score.toString(),
+            'Score ' + Provider.of<GameData>(context).correctTaps.toString(),
             style: kLargeTextStyle,
           ),
           SizedBox(

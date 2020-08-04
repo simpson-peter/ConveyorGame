@@ -2,13 +2,29 @@ import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 
 class GameData extends ChangeNotifier {
-  int score = 0;
   Util flameUtil;
   Size screenSize = Size(0, 0);
   int streak = 0;
+  int correctTaps = 0;
+  int incorrectTaps = 0;
 
   GameData({Util flameUtil}) {
     this.flameUtil = flameUtil;
+  }
+
+  void incrementCorrectTaps() {
+    correctTaps++;
+    notifyListeners();
+  }
+
+  void incrementIncorrectTaps() {
+    incorrectTaps++;
+    notifyListeners();
+  }
+
+  void incrementStreak() {
+    streak++;
+    notifyListeners();
   }
 
   void setStreak(int newStreak) {
@@ -24,5 +40,13 @@ class GameData extends ChangeNotifier {
   void setUtil(Util util) {
     flameUtil = util;
     notifyListeners();
+  }
+
+  double getScore() {
+    if (correctTaps == 0) {
+      return 0;
+    } else {
+      return correctTaps / (correctTaps + incorrectTaps);
+    }
   }
 }

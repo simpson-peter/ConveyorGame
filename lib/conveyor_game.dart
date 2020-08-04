@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
 import 'package:fallingthings/shopping_list.dart';
+import 'data_models/game_data.dart';
 import 'data_models/item_prototype.dart';
 import 'package:provider/provider.dart';
 import 'package:flame/game/game.dart';
@@ -24,12 +25,6 @@ class ConveyorGame extends Game with TapDetector {
 
   //Tracks whether the round is over
   bool _isDone = false;
-
-  int _correctTaps = 0;
-  int _incorrectTaps = 0;
-
-  //Tracks how long the user has selected correct items without a mistake
-  int _streak = 0;
 
   List<ItemPrototype> _itemsToGet = [
     ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
@@ -80,8 +75,7 @@ class ConveyorGame extends Game with TapDetector {
     }
     if (_shoppingList.listCompleted()) {
       print('Game over');
-      print('Score: ' +
-          (_correctTaps / (_correctTaps + _incorrectTaps)).toString());
+      print('Score: ' + Provider.of<GameData>(context).getScore().toString());
       _isDone = true;
     } else {
       //Create an item generator if it does not yet exist.
@@ -135,11 +129,11 @@ class ConveyorGame extends Game with TapDetector {
       Item item = _items[i];
       if (item.isTapped(tapDownDetails)) {
         if (_shoppingList.verifyMembership(toVerify: item)) {
-          _correctTaps++;
-          _streak++;
+          Provider.of<GameData>(context).incrementCorrectTaps();
+          Provider.of<GameData>(context).incrementStreak();
         } else {
-          _incorrectTaps++;
-          _streak = 0;
+          Provider.of<GameData>(context).incrementIncorrectTaps();
+          Provider.of<GameData>(context).setStreak(0);
         }
         _items.removeAt(i);
         return;
