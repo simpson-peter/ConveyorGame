@@ -1,7 +1,7 @@
 import 'package:fallingthings/data_models/item_prototype.dart';
 
 import 'constants.dart';
-import 'data_models/item.dart';
+import 'item.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 

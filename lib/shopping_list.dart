@@ -6,7 +6,7 @@ import 'package:flame/components/component.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'data_models/game_data.dart';
-import 'data_models/item.dart';
+import 'item.dart';
 
 class ShoppingList extends PositionComponent {
   //Stores the prototypes which the player is trying to match

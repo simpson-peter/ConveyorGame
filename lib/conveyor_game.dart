@@ -8,7 +8,7 @@ import 'package:flame/game/game.dart';
 import 'package:flame/gestures.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
-import 'data_models/item.dart';
+import 'item.dart';
 
 //TODO Implement timer
 //TODO Implement Streak Tracker
@@ -52,7 +52,7 @@ class ConveyorGame extends Game with TapDetector {
     //Render background
     Rect bgRect = Rect.fromLTWH(0, 0, screenSize.width, screenSize.height);
     Paint bgPaint = Paint();
-    bgPaint.color = Colors.blueGrey;
+    bgPaint.color = Color(0xFF1c313a);
     canvas.drawRect(bgRect, bgPaint);
 
     //Render items-to-make

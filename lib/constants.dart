@@ -28,3 +28,5 @@ const TextStyle kLargeTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 20,
 );
+
+const String kConveryAssetPath = 'con'
