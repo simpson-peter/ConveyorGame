@@ -17,6 +17,9 @@ class ShoppingList extends PositionComponent {
   //Used to graphically represent this shopping list.
   BuildContext context;
 
+  //TODO Find an actual position for this
+  double startPos = 375;
+
   //Tracks which Items this shopping list has already matched for
   //itemIDs from Items passed into verifyMembership()
   Map<String, ItemPrototype> _alreadyMatched = Map<String, ItemPrototype>();
@@ -25,17 +28,7 @@ class ShoppingList extends PositionComponent {
       {@required List<ItemPrototype> itemList,
       @required BuildContext context}) {
     _itemList = itemList;
-
-    //TODO Find an actual position for this
-    double startPos = 375;
-    for (ItemPrototype prototype in _itemList) {
-      _graphicItemList.add(Item(
-        prototype: prototype,
-        xPos: startPos,
-        yPos: 0,
-      ));
-      startPos += 50;
-    }
+    initializeGraphicItems();
   }
 
   @override
@@ -72,5 +65,25 @@ class ShoppingList extends PositionComponent {
   //Resets gameplay, makes it so the player has collected zero of the matching items
   void resetAlreadyMatched() {
     _alreadyMatched = Map<String, ItemPrototype>();
+  }
+
+  //Method to update the desired items shopping list which this class displays
+  void setItemsToGet(List<ItemPrototype> newItemList) {
+    _itemList = newItemList;
+    initializeGraphicItems();
+  }
+
+  //Fills the _graphicItemList with concrete implementations of the prototypes represented in _itemList
+  void initializeGraphicItems() {
+    _graphicItemList = List<Item>();
+    double drawPos = startPos;
+    for (ItemPrototype prototype in _itemList) {
+      _graphicItemList.add(Item(
+        prototype: prototype,
+        xPos: drawPos,
+        yPos: 0,
+      ));
+      drawPos += 50;
+    }
   }
 }

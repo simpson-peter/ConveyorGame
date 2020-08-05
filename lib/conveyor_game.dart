@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
 import 'package:fallingthings/shopping_list.dart';
@@ -27,11 +28,7 @@ class ConveyorGame extends Game with TapDetector {
   //Handles rendering the animated conveyor in the game background
   Conveyor conveyorSprite;
 
-  List<ItemPrototype> _itemsToGet = [
-    ItemPrototype(itemID: 'A1', imgFilepath: 'orange_orange.png'),
-    ItemPrototype(itemID: 'A2', imgFilepath: 'apple_red.png'),
-    ItemPrototype(itemID: 'A4', imgFilepath: 'cake_normal.png'),
-  ];
+  List<ItemPrototype> _itemsToGet;
 
   //Tracks whether the round is over
   bool _isDone = false;
@@ -45,13 +42,16 @@ class ConveyorGame extends Game with TapDetector {
 
   BuildContext context;
 
+  Random rand = new Random(DateTime.now().millisecondsSinceEpoch);
+
   //Constructor
   ConveyorGame(BuildContext context) {
     this.context = context;
-    _shoppingList = new ShoppingList(itemList: _itemsToGet, context: context);
     conveyorSprite = Conveyor(
         screenWidth:
             Provider.of<GameData>(context, listen: false).screenSize.width);
+    generateItemsToGet();
+    _shoppingList = new ShoppingList(itemList: _itemsToGet, context: context);
   }
 
   @override
@@ -156,6 +156,8 @@ class ConveyorGame extends Game with TapDetector {
   void _resetGame() {
     Provider.of<GameData>(context, listen: false).resetScore();
     _items = List<Item>();
+    generateItemsToGet();
+    _shoppingList.setItemsToGet(_itemsToGet);
     _shoppingList.resetAlreadyMatched();
     _timeSinceItemGen = 0;
     _timeSinceStep = 0;
@@ -166,5 +168,29 @@ class ConveyorGame extends Game with TapDetector {
     screenSize = size;
     conveyorSprite.updateScreenWidth(size.width);
     super.resize(size);
+  }
+
+  void generateItemsToGet() {
+    _itemsToGet = new List<ItemPrototype>();
+    //Tracks the indexes of kAllItemPrototypes which the toGet list will take items from
+    Set<int> indexesToGet = Set<int>();
+
+    //Pick n indices, where 1 <= n <= 0.75 * kAllItemPrototypes.length
+    int numberOfIndicesToGet =
+        rand.nextInt(((0.75 * kAllItemPrototypes.length).toInt()));
+
+    if (numberOfIndicesToGet == 0) {
+      numberOfIndicesToGet++;
+    }
+
+    //Pick items from the list of all items
+    while (indexesToGet.length < numberOfIndicesToGet) {
+      indexesToGet.add(rand.nextInt(kAllItemPrototypes.length));
+    }
+
+    //Fill the to get list
+    for (int itemIdx in indexesToGet) {
+      _itemsToGet.add(kAllItemPrototypes[itemIdx]);
+    }
   }
 }

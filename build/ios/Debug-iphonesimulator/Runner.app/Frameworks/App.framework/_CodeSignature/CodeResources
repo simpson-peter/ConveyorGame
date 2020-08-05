@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		PMgD2Z1kEi74g0otkuSlDFCxw8w=
+		ExG4zTKRsmapiWbIjOjtaibTX+k=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -27,6 +27,10 @@
 		<key>flutter_assets/assets/images/.DS_Store</key>
 		<data>
 		aZaS5ybpFarcMb3t+Fapv6dMxYE=
+		</data>
+		<key>flutter_assets/assets/images/apple_blue.png</key>
+		<data>
+		XxgPX0AUwlRRwQvd9r3m+ugIcsI=
 		</data>
 		<key>flutter_assets/assets/images/apple_red.png</key>
 		<data>
@@ -52,6 +56,22 @@
 		<data>
 		WGatioFE0U1OWnRVl5dHn28OCa4=
 		</data>
+		<key>flutter_assets/assets/images/pear_green.png</key>
+		<data>
+		C+qBqsFiDrwTS17fmrVBN5N+/R8=
+		</data>
+		<key>flutter_assets/assets/images/pineapple_pink.png</key>
+		<data>
+		9fx4kJfYrIT9zIfItVoMSaeQfDI=
+		</data>
+		<key>flutter_assets/assets/images/pineapple_yellow.png</key>
+		<data>
+		yb8lrcgfB/7ukb5DBeimFBGlpLg=
+		</data>
+		<key>flutter_assets/assets/images/pizza_normal.png</key>
+		<data>
+		hbU3MzWqZGcsWmQDhyhcySdn4KI=
+		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.ttf</key>
 		<data>
 		nIzDzw7hjOThppiX5OleKNAxtqM=
@@ -62,7 +82,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		2SgwAz1KjjcRzAlbh9AqkC7We0c=
+		nIisSL+QT/AjFAN2kgkxm/8aiZA=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -79,11 +99,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			PMgD2Z1kEi74g0otkuSlDFCxw8w=
+			ExG4zTKRsmapiWbIjOjtaibTX+k=
 			</data>
 			<key>hash2</key>
 			<data>
-			EodaBpIL6zXEa2A3ptUpuBSA3rE239ITdaYJaT8eYn4=
+			enRk0LiRN7VcX35bvJ2rZ+U8Htsak16/2kDLqqn49X0=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -117,6 +137,17 @@
 			<key>hash2</key>
 			<data>
 			FzLL8Lg1JcpnacOljRXec/OBIu2MBWyn4wpgdnZ+89Y=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/apple_blue.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			XxgPX0AUwlRRwQvd9r3m+ugIcsI=
+			</data>
+			<key>hash2</key>
+			<data>
+			r5lstjoAfATbW+4tw0/kf3lcgPYVdcNNWM3vkNTjpqQ=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/images/apple_red.png</key>
@@ -185,6 +216,50 @@
 			I9Blxt6cBUyMNkolJGZX1X8L9eBnM2JfvNat2oJ6G0o=
 			</data>
 		</dict>
+		<key>flutter_assets/assets/images/pear_green.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			C+qBqsFiDrwTS17fmrVBN5N+/R8=
+			</data>
+			<key>hash2</key>
+			<data>
+			YS+u+q+80e9Eflu26It3LOEKMs14wSN6GpzzkMZ4gbo=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/pineapple_pink.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			9fx4kJfYrIT9zIfItVoMSaeQfDI=
+			</data>
+			<key>hash2</key>
+			<data>
+			ssiJOsST8HfSKNII7WS5GOQTCLU1513gnDsHcFvQgQs=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/pineapple_yellow.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yb8lrcgfB/7ukb5DBeimFBGlpLg=
+			</data>
+			<key>hash2</key>
+			<data>
+			O91n0T0PftmJAkJpBeZg335C2UtkUvW34em74Wh12EY=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/pizza_normal.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			hbU3MzWqZGcsWmQDhyhcySdn4KI=
+			</data>
+			<key>hash2</key>
+			<data>
+			GnjjjOtXtjk0odoPqYikwn+LYBqf8/lFdVlLTo+tngg=
+			</data>
+		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.ttf</key>
 		<dict>
 			<key>hash</key>
@@ -211,11 +286,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2SgwAz1KjjcRzAlbh9AqkC7We0c=
+			nIisSL+QT/AjFAN2kgkxm/8aiZA=
 			</data>
 			<key>hash2</key>
 			<data>
-			HoMgKK3xFmRZf1ld0IzkG9w+boXKoLDIGyaTJ5HyX04=
+			oJ4cxMUyQGLr+oKEHiPD7kT3DjgnhiFB3FBodccluQI=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
