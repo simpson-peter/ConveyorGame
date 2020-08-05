@@ -8,6 +8,9 @@ class GameData extends ChangeNotifier {
   int correctTaps = 0;
   int incorrectTaps = 0;
 
+  //Default y position for conveyor items
+  static const double yPos = 180;
+
   GameData({Util flameUtil}) {
     this.flameUtil = flameUtil;
   }

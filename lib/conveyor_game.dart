@@ -12,9 +12,6 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'item.dart';
 
-//TODO Implement timer
-//TODO Implement Streak Tracker
-
 class ConveyorGame extends Game with TapDetector {
   Size screenSize;
 

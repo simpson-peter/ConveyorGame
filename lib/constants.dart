@@ -19,13 +19,13 @@ List<ItemPrototype> kAllItemPrototypes = [
 
 //Tracks how much sprites should be scaled up by default
 const Map<String, double> kSpriteScaleFactor = {
-  'A1': 2,
-  'A2': 2.3,
-  'A3': 2.5,
-  'A4': 2,
-  'A5': 2,
-  'A6': 2,
-  'A7': 2,
+  'A1': 3,
+  'A2': 3.3,
+  'A3': 3.5,
+  'A4': 3,
+  'A5': 3,
+  'A6': 3.3,
+  'A7': 3,
 };
 
 const TextStyle kLargeTextStyle = TextStyle(
@@ -35,7 +35,4 @@ const TextStyle kLargeTextStyle = TextStyle(
 );
 
 //Tracks the sprite to use to render the conveyor
-const String kConveyorAssetPath = 'conveyor_tile_brown.png';
-
-//
-const double yPos = 180;
+const String kConveyorAssetPath = 'conveyor_tile_clean.png';

@@ -10,12 +10,14 @@ import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/material.dart';
 
+import 'data_models/game_data.dart';
+
 class Item extends PositionComponent with Tapable {
   double xPos;
   double yPos;
   double height;
   double width;
-  static double iconWidth = 50;
+  static double iconWidth = 75;
   String imgFilepath;
   Sprite image;
 
@@ -24,15 +26,15 @@ class Item extends PositionComponent with Tapable {
 
   //Item Constructor, all fields are mandatory.
   Item(
-      {this.height = 50,
+      {this.height = 75,
       @required this.prototype,
-      this.width = 50,
+      this.width = 75,
       this.xPos = 0,
-      this.yPos = 100,
+      this.yPos = GameData.yPos,
       this.imgFilepath}) {
     this.image = new Sprite(prototype.imgFilepath);
-    this.width = 50;
-    this.height = 50;
+    this.height = 75;
+    this.width = 75;
   }
 
   //Draws the object on the canvas

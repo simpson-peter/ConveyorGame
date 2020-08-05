@@ -1,23 +1,24 @@
 import 'dart:ui';
 import 'package:fallingthings/constants.dart';
 import 'package:flame/components/component.dart';
+import 'package:flame/game.dart';
 import 'package:flame/position.dart';
 import 'package:flame/sprite.dart';
 import 'package:flutter/cupertino.dart';
+
+import 'data_models/game_data.dart';
 
 class Conveyor extends PositionComponent {
   double screenWidth;
   Sprite image;
 
-  //TODO Make this dynamic, create a game-wide yPos variable.
-  double yPos = 180;
   //Tracks the rate at which the conveyor positions update
   double conveyorStepTime = kStepTime;
 
   //Tracks the time elapsed since the conveyor was last rendered
   double timeSinceConveyorUpdate = 0;
 
-  static double tileWidth = 100;
+  static double tileWidth = 150;
 
   List<double> tileXPositions = List<double>();
 
@@ -56,7 +57,8 @@ class Conveyor extends PositionComponent {
   void render(Canvas c) {
     //Tracks how much of the screen length we've rendered already
     for (double xPos in tileXPositions) {
-      image.renderPosition(c, Position(xPos, yPos));
+      image.renderScaled(c, Position(xPos, GameData.yPos), scale: 1.0);
+      //image.renderPosition(c, Position(xPos, yPos));
     }
   }
 }
