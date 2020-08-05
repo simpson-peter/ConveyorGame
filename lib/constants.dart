@@ -27,6 +27,7 @@ const Map<String, double> kSpriteScaleFactor = {
 const TextStyle kLargeTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 20,
+  fontFamily: 'Press Start 2P',
 );
 
-const String kConveyorAssetPath = 'conveyor_tile.png';
+const String kConveyorAssetPath = 'conveyor_tile_brown.png';

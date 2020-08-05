@@ -8,6 +8,9 @@ import 'package:flutter/cupertino.dart';
 class Conveyor extends PositionComponent {
   double screenWidth;
   Sprite image;
+
+  //TODO Make this dynamic, create a game-wide yPos variable.
+  double yPos = 180;
   //Tracks the rate at which the conveyor positions update
   double conveyorStepTime = kStepTime;
 
@@ -54,7 +57,7 @@ class Conveyor extends PositionComponent {
   void render(Canvas c) {
     //Tracks how much of the screen length we've rendered already
     for (double xPos in tileXPositions) {
-      image.renderPosition(c, Position(xPos, 180));
+      image.renderPosition(c, Position(xPos, yPos));
     }
   }
 }

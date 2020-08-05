@@ -15,11 +15,13 @@ class _GameShellState extends State<GameShell> {
   @override
   Widget build(BuildContext context) {
     ConveyorGame conveyorGame = ConveyorGame(context);
-    return Column(
-      children: <Widget>[
-        Expanded(child: conveyorGame.widget),
-        GameBar(),
-      ],
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Expanded(child: conveyorGame.widget),
+          GameBar(),
+        ],
+      ),
     );
   }
 }
