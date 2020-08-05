@@ -30,4 +30,8 @@ const TextStyle kLargeTextStyle = TextStyle(
   fontFamily: 'Press Start 2P',
 );
 
+//Tracks the sprite to use to render the conveyor
 const String kConveyorAssetPath = 'conveyor_tile_brown.png';
+
+//
+const double yPos = 180;

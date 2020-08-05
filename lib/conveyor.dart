@@ -44,7 +44,6 @@ class Conveyor extends PositionComponent {
       for (int i = 0; i < tileXPositions.length; i++) {
         if (tileXPositions[i] > screenWidth) {
           tileXPositions.removeAt(i);
-          tileXPositions.add(0);
           tileXPositions.add(-tileWidth);
         } else {
           tileXPositions[i]++;
