@@ -1,11 +1,7 @@
 import 'dart:ui';
 import 'package:fallingthings/data_models/item_prototype.dart';
-import 'package:provider/provider.dart';
-
 import 'package:flame/components/component.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'data_models/game_data.dart';
 import 'item.dart';
 
 class ShoppingList extends PositionComponent {

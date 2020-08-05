@@ -175,9 +175,8 @@ class ConveyorGame extends Game with TapDetector {
     //Tracks the indexes of kAllItemPrototypes which the toGet list will take items from
     Set<int> indexesToGet = Set<int>();
 
-    //Pick n indices, where 1 <= n <= 0.75 * kAllItemPrototypes.length
-    int numberOfIndicesToGet =
-        rand.nextInt(((0.75 * kAllItemPrototypes.length).toInt()));
+    //Pick n indices, where 1 <= n < kAllItemPrototypes.length
+    int numberOfIndicesToGet = rand.nextInt(kAllItemPrototypes.length.toInt());
 
     if (numberOfIndicesToGet == 0) {
       numberOfIndicesToGet++;
