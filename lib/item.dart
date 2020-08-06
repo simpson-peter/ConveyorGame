@@ -32,7 +32,7 @@ class Item extends PositionComponent with Tapable {
       this.xPos = 0,
       this.yPos = GameData.yPos,
       this.imgFilepath}) {
-    this.image = new Sprite(prototype.imgFilepath);
+    this.image = Sprite(prototype.imgFilepath);
     this.height = 75;
     this.width = 75;
   }
