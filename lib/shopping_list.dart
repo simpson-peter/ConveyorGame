@@ -1,7 +1,11 @@
 import 'dart:ui';
 import 'package:fallingthings/data_models/item_prototype.dart';
 import 'package:flame/components/component.dart';
+import 'package:flame/game.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'data_models/game_data.dart';
 import 'item.dart';
 
 class ShoppingList extends PositionComponent {
@@ -14,7 +18,7 @@ class ShoppingList extends PositionComponent {
   BuildContext context;
 
   //TODO Find an actual position for this
-  double startPos = 375;
+  double startPos = 200;
 
   //Tracks which Items this shopping list has already matched for
   //itemIDs from Items passed into verifyMembership()
@@ -74,12 +78,15 @@ class ShoppingList extends PositionComponent {
     _graphicItemList = List<Item>();
     double drawPos = startPos;
     for (ItemPrototype prototype in _itemList) {
-      _graphicItemList.add(Item(
-        prototype: prototype,
-        xPos: drawPos,
-        yPos: 0,
-      ));
-      drawPos += 50;
+      _graphicItemList.add(
+        Item(
+          prototype: prototype,
+          xPos: drawPos,
+          //TODO Figure out how to get screen size here
+          yPos: 0,
+        ),
+      );
+      drawPos += Item.iconWidth;
     }
   }
 }

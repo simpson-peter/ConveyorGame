@@ -33,6 +33,9 @@ class ConveyorGame extends Game with TapDetector {
   //Holds all items on-screen
   List<Item> _items = List<Item>();
 
+  //Tracks the item prototype ID and corresponding item quantity which the user has picked during the current round.
+  Map<String, int> _itemsPicked = Map<String, int>();
+
   ItemGenerator itemGenerator;
 
   ShoppingList _shoppingList;
@@ -48,7 +51,8 @@ class ConveyorGame extends Game with TapDetector {
         screenWidth:
             Provider.of<GameData>(context, listen: false).screenSize.width);
     generateItemsToGet();
-    _shoppingList = new ShoppingList(itemList: _itemsToGet, context: context);
+    _shoppingList =
+        new ShoppingList(itemList: _itemsToGet, context: this.context);
   }
 
   @override
@@ -119,7 +123,7 @@ class ConveyorGame extends Game with TapDetector {
           }
           //Otherwise just move the item along
           else {
-            currItem.xPos += 1;
+            currItem.xPos += 2;
           }
         }
       }
@@ -132,6 +136,7 @@ class ConveyorGame extends Game with TapDetector {
       _resetGame();
       return;
     }
+    //Check all items to see if we've tapped it
     for (int i = 0; i < _items.length; i++) {
       Item item = _items[i];
       if (item.isTapped(tapDownDetails)) {
@@ -143,6 +148,15 @@ class ConveyorGame extends Game with TapDetector {
               .incrementIncorrectTaps();
           Provider.of<GameData>(context, listen: false).setStreak(0);
         }
+
+        //Add the new item to the set which tracks the items the user has selected
+        if (_itemsPicked.containsKey(item.prototype.itemID)) {
+          _itemsPicked[item.prototype.itemID] =
+              _itemsPicked[item.prototype.itemID] += 1;
+        } else {
+          _itemsPicked[item.prototype.itemID] = 1;
+        }
+
         _items.removeAt(i);
         return;
       }
@@ -156,6 +170,7 @@ class ConveyorGame extends Game with TapDetector {
     generateItemsToGet();
     _shoppingList.setItemsToGet(_itemsToGet);
     _shoppingList.resetAlreadyMatched();
+    _itemsPicked.clear();
     _timeSinceItemGen = 0;
     _timeSinceStep = 0;
     _isDone = false;

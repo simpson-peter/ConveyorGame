@@ -47,7 +47,7 @@ class Conveyor extends PositionComponent {
           tileXPositions.removeAt(i);
           tileXPositions.add(-tileWidth);
         } else {
-          tileXPositions[i]++;
+          tileXPositions[i] += 2;
         }
       }
     }
