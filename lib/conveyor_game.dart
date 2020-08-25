@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
+import 'package:fallingthings/round_end_screen.dart';
 import 'package:fallingthings/shopping_list.dart';
 import 'conveyor.dart';
 import 'data_models/game_data.dart';
@@ -11,6 +12,8 @@ import 'package:flame/gestures.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'item.dart';
+
+//TODO
 
 class ConveyorGame extends Game with TapDetector {
   Size screenSize;
@@ -26,6 +29,8 @@ class ConveyorGame extends Game with TapDetector {
   Conveyor conveyorSprite;
 
   List<ItemPrototype> _itemsToGet;
+
+  RoundEndScreen _roundEndScreen;
 
   //Tracks whether the round is over
   bool _isDone = false;
@@ -72,6 +77,13 @@ class ConveyorGame extends Game with TapDetector {
     //Render conveyor items
     for (Item item in _items) {
       item.render(canvas);
+    }
+
+    if (_isDone) {
+      if (_roundEndScreen == null) {
+        _roundEndScreen = RoundEndScreen(context: this.context);
+      }
+      _roundEndScreen.render(canvas);
     }
   }
 
@@ -170,6 +182,7 @@ class ConveyorGame extends Game with TapDetector {
     generateItemsToGet();
     _shoppingList.setItemsToGet(_itemsToGet);
     _shoppingList.resetAlreadyMatched();
+    _roundEndScreen = null;
     _itemsPicked.clear();
     _timeSinceItemGen = 0;
     _timeSinceStep = 0;

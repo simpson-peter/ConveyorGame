@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'GameShell.dart';
+import 'game_shell.dart';
 import 'data_models/game_data.dart';
 
 //TODO Look at Snek main() if this doesn't work

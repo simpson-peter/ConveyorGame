@@ -56,6 +56,7 @@ class Conveyor extends PositionComponent {
   @override
   void render(Canvas c) {
     //Tracks how much of the screen length we've rendered already
+    //TODO Fill space behind conveyor
     for (double xPos in tileXPositions) {
       image.renderScaled(c, Position(xPos, GameData.yPos), scale: 1.0);
       //image.renderPosition(c, Position(xPos, yPos));
