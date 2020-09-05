@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
 import 'package:fallingthings/round_end_screen.dart';
 import 'package:fallingthings/shopping_list.dart';
+import 'package:flame/flame_audio.dart';
 import 'conveyor.dart';
 import 'data_models/game_data.dart';
 import 'data_models/item_prototype.dart';
@@ -17,6 +18,8 @@ import 'item.dart';
 
 class ConveyorGame extends Game with TapDetector {
   Size screenSize;
+
+  static FlameAudio audio = FlameAudio();
 
   //double which tracks how long to wait between game state updates
   double _stepTime = kStepTime;
@@ -152,6 +155,7 @@ class ConveyorGame extends Game with TapDetector {
     for (int i = 0; i < _items.length; i++) {
       Item item = _items[i];
       if (item.isTapped(tapDownDetails)) {
+        item.playSound();
         if (_shoppingList.verifyMembership(toVerify: item)) {
           Provider.of<GameData>(context, listen: false).incrementCorrectTaps();
           Provider.of<GameData>(context, listen: false).incrementStreak();

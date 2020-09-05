@@ -1,7 +1,12 @@
 import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
+
 class GameData extends ChangeNotifier {
+  //Tracks the current language pack in use. Note that this is case-sensitive and most correspond exactly to the
+  Language language = Language.LADIN;
+
   Util flameUtil;
   Size screenSize = Size(0, 0);
   int streak = 0;

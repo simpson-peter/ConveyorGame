@@ -3,6 +3,7 @@
 */
 import 'dart:ui';
 import 'package:fallingthings/ItemGenerator.dart';
+import 'package:fallingthings/conveyor_game.dart';
 import 'package:fallingthings/data_models/item_prototype.dart';
 import 'package:flame/components/component.dart';
 import 'package:flame/components/mixins/tapable.dart';
@@ -48,6 +49,10 @@ class Item extends PositionComponent with Tapable {
   }
 
   void update(double dt) {}
+
+  void playSound() {
+    ConveyorGame.audio.play(prototype.audioFilepath);
+  }
 
   //Returns whether the tap represented by td hit this square
   bool isTapped(TapDownDetails td) {
