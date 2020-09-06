@@ -13,6 +13,10 @@ class RoundEndScreen extends PositionComponent {
   String filepath;
   double score;
 
+  //Calculates how much to magnify the emote by
+  static double emoteScale = 15;
+
+  //Uses score to calculate the emote to be shown.
   RoundEndScreen({@required this.context}) {
     score = Provider.of<GameData>(context, listen: false).getScore();
 
@@ -30,11 +34,21 @@ class RoundEndScreen extends PositionComponent {
     this.emote = Sprite(filepath);
   }
 
+  //Displays the emote in the middle of the screen
   @override
   void render(Canvas c) {
     Size screenSize =
         Provider.of<GameData>(context, listen: false).getScreenSize();
-    Position centerPos = Position(screenSize.width / 2, screenSize.height / 2);
-    emote.renderScaled(c, centerPos, scale: 20);
+
+    //Calculate the center of the screen
+    Position centerPos;
+//    if(screenSize != null){
+    centerPos = Position(
+      (screenSize.width / 2) - (emote.size.x * emoteScale) / 2,
+      (screenSize.height / 2) - (emote.size.y * emoteScale) / 2,
+    );
+//    }
+
+    emote.renderScaled(c, centerPos, scale: emoteScale);
   }
 }
