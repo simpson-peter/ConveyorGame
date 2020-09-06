@@ -52,15 +52,23 @@ class ConveyorGame extends Game with TapDetector {
 
   Random rand = new Random(DateTime.now().millisecondsSinceEpoch);
 
+  Language selectedLang = Language.LADIN;
+
   //Constructor
   ConveyorGame(BuildContext context) {
     this.context = context;
     conveyorSprite = Conveyor(
-        screenWidth:
-            Provider.of<GameData>(context, listen: false).screenSize.width);
+        screenWidth: Provider.of<GameData>(context, listen: false)
+            .getScreenSize()
+            .width);
     generateItemsToGet();
     _shoppingList =
         new ShoppingList(itemList: _itemsToGet, context: this.context);
+
+    //Load audio assets
+    Map<Object, String> langAudioMap = kLangItemAudioMap[selectedLang];
+    List<String> audioFilePaths = langAudioMap.values.toList();
+    audio.loadAll(audioFilePaths);
   }
 
   @override

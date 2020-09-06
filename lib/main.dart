@@ -20,6 +20,11 @@ class MyApp extends StatelessWidget {
     size = await Flame.util.initialDimensions();
   }
 
+  //Function called by provider to load size data from surrounding context
+  Size getSize() {
+    return size;
+  }
+
   @override
   Widget build(BuildContext context) {
     //initialize flame Util object
@@ -31,7 +36,10 @@ class MyApp extends StatelessWidget {
     flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
 
     return ChangeNotifierProvider(
-      create: (context) => GameData(flameUtil: flameUtil),
+      create: (context) => GameData(
+        flameUtil: flameUtil,
+        getSize: getSize,
+      ),
       child: MaterialApp(
         home: GameShell(),
       ),

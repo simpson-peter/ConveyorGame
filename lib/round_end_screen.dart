@@ -32,9 +32,9 @@ class RoundEndScreen extends PositionComponent {
 
   @override
   void render(Canvas c) {
-    //TODO Delete
-    debugPrint('In RES render()');
-    Size screenSize = Provider.of<GameData>(context, listen: false).screenSize;
-    emote.renderScaled(c, Position(0, 0));
+    Size screenSize =
+        Provider.of<GameData>(context, listen: false).getScreenSize();
+    Position centerPos = Position(screenSize.width / 2, screenSize.height / 2);
+    emote.renderScaled(c, centerPos, scale: 20);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flame/position.dart';
 import 'package:flame/util.dart';
 import 'package:flutter/material.dart';
 
@@ -8,16 +9,27 @@ class GameData extends ChangeNotifier {
   Language language = Language.LADIN;
 
   Util flameUtil;
-  Size screenSize = Size(0, 0);
+  Size _screenSize = Size(0, 0);
   int streak = 0;
   int correctTaps = 0;
   int incorrectTaps = 0;
 
+  Function getSize;
+
   //Default y position for conveyor items
   static const double yPos = 180;
 
-  GameData({Util flameUtil}) {
+  GameData({Util flameUtil, this.getSize}) {
     this.flameUtil = flameUtil;
+  }
+
+  Size getScreenSize() {
+    Size returnedSize = getSize();
+    if (returnedSize != null) {
+      _screenSize = returnedSize;
+    }
+
+    return _screenSize;
   }
 
   void incrementCorrectTaps() {
@@ -41,7 +53,7 @@ class GameData extends ChangeNotifier {
   }
 
   void setScreenSize(Size screenSize) {
-    this.screenSize = screenSize;
+    this._screenSize = screenSize;
     notifyListeners();
   }
 
